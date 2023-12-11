@@ -12,14 +12,19 @@
             cluster: "{{ $cluster }}"
         });
 
-        const channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function (data) {
-            document.getElementById('message').innerHTML = data.message;
+        const channel = pusher.subscribe('products');
+        channel.bind('products', function (data) {
+            console.log(data.event);
         });
     </script>
 </head>
 
 <body>
     <h1>Pusher Test</h1>
-    <div id="message"></div>
+    <div id="product"></div>
+    @foreach ($products as $product)
+    <div>
+        <p>商品名：{{$product->product_name}} | 在庫数：{{$product->stock_quantity}}</p>
+    </div>
+    @endforeach
 </body>
