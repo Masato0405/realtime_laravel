@@ -12,10 +12,8 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    // Product::increment('stock_quantity');
-    $product = Product::find(2);
-    $product->stock_quantity++;
+    $product = Product::find(3);
+    $product->increment('stock_quantity');
     $product->save();
     Product::getEventDispatcher()->dispatch('products');
-
 });
